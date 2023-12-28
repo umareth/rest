@@ -3,15 +3,22 @@ const router = require("express").Router();
 const validate = require("../utils/validate");
 const { login, createUser, logOut } = require("../controllers/users"); // контроллеры
 const { getRest } = require("../controllers/movies"); // контроллеры
+const { createTable } = require("../controllers/table"); // контроллеры
+const { createBooking } = require("../controllers/reserv"); // контроллеры
+
 const { auth } = require("../middlewares/auth");
 const NotFoundErr = require("../middlewares/errors/notFound");
 const { ERROR_NOT_FOUND_ROUTE } = require("../utils/constants");
 
 router.post("/signup", validate.validateCreateUser, createUser);
 router.post("/signin", validate.validateLoginUser, login);
+
 router.get("/rest", getRest);
 
 router.use(auth);
+
+router.post("/tables", createTable);
+router.post("/reserv", createBooking);
 
 router.use("/users", require("./users"));
 router.use("/admin", require("./movies"));

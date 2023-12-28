@@ -1,41 +1,19 @@
-// models/reservation.js
 const mongoose = require("mongoose");
 
-const reservationSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+const tableSchema = new mongoose.Schema({
+  number: {
+    type: Number,
     required: true,
+    unique: true,
   },
-  restaurant: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Restaurant",
-    required: true,
-  },
-  tableNumber: {
+  capacity: {
     type: Number,
     required: true,
   },
-  date: {
-    type: Date,
-    required: true,
-  },
-  startTime: {
-    type: String, // Change the type according to your needs (e.g., Date, String, etc.)
-    required: true,
-  },
-  endTime: {
-    type: String, // Change the type according to your needs (e.g., Date, String, etc.)
-    required: true,
-  },
-  isCancelled: {
+  isAvailable: {
     type: Boolean,
-    default: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+    default: true,
   },
 });
 
-module.exports = mongoose.model("Reservation", reservationSchema);
+module.exports = mongoose.model("Table", tableSchema);

@@ -12,7 +12,6 @@ const {
 } = require("../controllers/movies");
 
 const { createOrder } = require("../controllers/order");
-const { createReservation } = require("../controllers/table");
 
 router.get("/", getMovies);
 router.post("/", validate.validateCreateMovie, createMovie);
@@ -25,7 +24,5 @@ router.delete("/food/:menuItemId", deleteMenuItem);
 router.patch("/food/:menuItemId", editMenuItem);
 
 router.post("/order", createOrder);
-
-router.post("/table", createReservation);
 
 module.exports = router;
