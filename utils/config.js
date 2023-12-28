@@ -1,6 +1,6 @@
 const {
   PORT = 3000,
-  MONGO = "mongodb://127.0.0.1:27017/restbd",
+  MONGO = "mongodb+srv://astamirov001:1234@cluster0.85hvdyp.mongodb.net/restapi",
   JWT_SECRET = "some-secret-key",
   NODE_ENV,
 } = process.env;

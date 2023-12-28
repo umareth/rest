@@ -14,6 +14,17 @@ const NotFoundErr = require("../middlewares/errors/notFound");
 const ForbiddenErr = require("../middlewares/errors/errForbidden");
 
 // Получить все фильмы пользователя
+
+const getRest = async (req, res, next) => {
+  try {
+    const restaurants = await Movie.find(); // Находим все рестораны в базе данных
+
+    res.status(STATUS_OK).send(restaurants); // Возвращаем список ресторанов
+  } catch (err) {
+    next(err); // Обрабатываем возможную ошибку
+  }
+};
+
 const getMovies = (req, res, next) => {
   Movie.find({ owner: req.user.id })
     .then((movies) => res.status(STATUS_OK).json(movies))
@@ -175,4 +186,5 @@ module.exports = {
   createMenuItem,
   deleteMenuItem,
   editMenuItem,
+  getRest,
 };
